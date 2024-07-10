@@ -24,6 +24,8 @@ jobs:
     steps:
         - name: Pull Image from docker hub
           run: docker pull vishnu463/todolist-api:latest
+        - name: Delete old container
+          run: docker rm -f todolist-api-container         
         - name: Run Docker Container
           run: docker run -d -p 3000:3000 --name todolist-api-container -e MONGO_PASSWORD='${{secrets.MONGO_PASSWORD}}' vishnu463/todolist-api
 
